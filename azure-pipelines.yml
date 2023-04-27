@@ -9,13 +9,13 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'b9e8fe38-8f3b-45cb-8efa-dea2b8194cab'
+  azureSubscription: 'abc-corp-digital-service-conn'
 
   # Web app name
-  webAppName: ''
+  webAppName: 'abc-corp-digital-web-app'
 
   # Environment name
-  environmentName: ''
+  environmentName: 'dev'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -62,7 +62,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: '
             inputs:
-              azureSubscription: 'abc-corp-digital-web-app'
+              azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
               package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
